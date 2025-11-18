@@ -49,3 +49,33 @@ Manual tests performed locally (or validated in concept if local runtime unavail
 > **Prerequisite:** set up keys for LiveKit, OpenAI (or chosen LLM), and any STT/TTS plugin you plan to use.
 
 1. Create `.env` in repo root (example):
+LIVEKIT_URL=https://your-livekit-server
+LIVEKIT_API_KEY=...
+LIVEKIT_API_SECRET=...
+OPENAI_API_KEY=...
+
+IGNORED_FILLER_WORDS=uh,umm,um,hmm,haan,haanji
+INTERRUPT_COMMAND_WORDS=stop,wait,hold on,no,not that,cancel
+FILLER_MIN_CONFIDENCE=0.4
+LOG_LEVEL=INFO
+
+
+2. Create & activate a Python venv:
+- **Windows (PowerShell)** — use a Windows-native python:
+  ```powershell
+  python -m venv .venv
+  .\.venv\Scripts\Activate.ps1
+  python -m pip install --upgrade pip setuptools
+  python -m pip install -e ".[openai,silero,cartesia,deepgram,turn-detector]" python-dotenv
+  ```
+- **Linux / WSL**:
+  ```bash
+  python3 -m venv .venv
+  source .venv/bin/activate
+  python -m pip install --upgrade pip setuptools
+  python -m pip install -e ".[openai,silero,cartesia,deepgram,turn-detector]" python-dotenv
+  ```
+
+3. Verify imports:
+```bash
+python -c "import importlib.util; print(importlib.util.find_spec('livekit'))"
