@@ -79,9 +79,11 @@ LOG_LEVEL=INFO
 3. Verify imports:
 ```bash
 python -c "import importlib.util; print(importlib.util.find_spec('livekit'))"
+```
 
-4️⃣** Run the example agent**
+4️. ** Run the example agent**
+```bash
 python -m livekit.agents.cli run examples.filler_agent:entrypoint dev
-
+```
 
 Join the LiveKit room from a web client or Agents Playground.
